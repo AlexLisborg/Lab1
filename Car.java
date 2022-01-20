@@ -26,7 +26,7 @@ public abstract class Car implements Movable{
     /***
      * the speed of acceleration and deacceleration
      * (see functions incrementSpeed and decrementSpeed)
-     * @return
+     *
      */
     public abstract double speedFactor();
 
@@ -34,13 +34,17 @@ public abstract class Car implements Movable{
      * Increments the currentSpeed with speedFactor times the defined amount.
      * @param amount the amount with which we multiply the speedFactor.
      */
-    public abstract void incrementSpeed(double amount);
+    public void incrementSpeed(double amount){
+        setCurrentSpeed(Math.min(getCurrentSpeed() + speedFactor() * amount,getEnginePower()));
+    }
 
     /***
      * Decrements the currentSpeed with speedFactor times the defined amount.
      * @param amount the amount with which we multiply the speedFactor.
      */
-    public abstract void decrementSpeed(double amount);
+    public void decrementSpeed(double amount){
+        setCurrentSpeed(Math.max(getCurrentSpeed() - speedFactor() * amount,0));
+    }
 
     /***
      * sets currentSpeed to the engineStartValue,
@@ -98,28 +102,49 @@ public abstract class Car implements Movable{
      * Sets the currentSpeed of the car.
      * @param currentSpeed the speed with which the currentSpeed will be set.
      */
-    public void setCurrentSpeed(double currentSpeed) {
-        this.currentSpeed = currentSpeed;
-
-    }
+    public void setCurrentSpeed(double currentSpeed) {this.currentSpeed = currentSpeed;}
 
     /***
-     * increments the angle of the car by the turnSpeed.
+     * Sets the angle of the car.
+     * @param angle the angle which will be set.
+     */
+    public void setAngle(double angle) {this.angle = angle;}
+
+    /***
+     *
+     * Returns the angle of the car.
+     */
+    public double getAngle(){ return angle;}
+
+    /***
+     *
+     * Gets the x value of the car.
+     */
+    public double getX() {return x;}
+
+    /***
+     *
+     * Gets the y value of the car.
+     */
+    public double getY() {return y;}
+
+    /***
+     * increases the angle of the car by the turnSpeed.
      */
     public void turnLeft(){
         this.angle = this.angle - this.turnSpeed;
     }
 
     /***
-     * decrements the angle of the car by the turnSpeed.
+     * decreases the angle of the car by the turnSpeed.
      */
     public void turnRight(){
         this.angle = this.angle + this.turnSpeed;
     }
 
     /***
-     * increments the x coordinate with the currentSpeed() times the cosine of the cars angle.
-     * increments the y coordinate with the currentSpeed() times the sine of the cars angle.
+     * increases the x coordinate with the currentSpeed() times the cosine of the cars angle.
+     * increases the y coordinate with the currentSpeed() times the sine of the cars angle.
      */
     public void move() {
         this.x = this.x + getCurrentSpeed() * Math.cos(angle);
