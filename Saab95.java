@@ -6,12 +6,12 @@ import java.awt.*;
 public class Saab95 extends Car {
 
     /***
-     * the turbo amount of the car.
+     * The turbo amount of the car.
      */
     private double turbo = 1;
 
     /***
-     * true if turbo is on, false if turbo is on.
+     * True if turbo is on, false if turbo is on.
      */
     private boolean turboOn;
 
@@ -42,6 +42,9 @@ public class Saab95 extends Car {
         turbo = 1.0;
     }
 
+    /***
+    * Returns the Turbo value of the car.
+    */
     public double getTurbo() {
     return this.turbo;
 

@@ -2,27 +2,30 @@ import java.awt.*;
 import java.math.*;
 
 /***
- * abstract superclass defining the attributes of a basic car.
+ * Abstract superclass defining the attributes of a basic car.
+ * @author Eli Uhlin, Alexander Lisborg
+ * @version 1.6 21 january 2022
+ *
  */
 public abstract class Car implements Movable{
 
     /***
-     * x coordinate of the car.
+     * X coordinate of the car.
      */
     private double x;
 
     /***
-     * y coordinate of the car.
+     * Y coordinate of the car.
      */
     private double y;
 
     /***
-     * the direction of the car
+     * The direction of the car
      */
     private double angle;
 
     /***
-     * the turn speed of the car.
+     * The turn speed of the car.
      */
     private double turnSpeed = Math.PI / 8;
 
@@ -73,7 +76,7 @@ public abstract class Car implements Movable{
     public abstract double speedFactor();
 
     /***
-     * Increments the currentSpeed with speedFactor times the defined amount.
+     * Increases currentSpeed with speedFactor times the defined amount.
      * @param amount the amount with which we multiply the speedFactor.
      */
     public void incrementSpeed(double amount){
@@ -81,7 +84,7 @@ public abstract class Car implements Movable{
     }
 
     /***
-     * Decrements the currentSpeed with speedFactor times the defined amount.
+     * Decreases currentSpeed with speedFactor times the defined amount.
      * @param amount the amount with which we multiply the speedFactor.
      */
     public void decrementSpeed(double amount){
@@ -89,7 +92,7 @@ public abstract class Car implements Movable{
     }
 
     /***
-     * sets currentSpeed to the engineStartValue,
+     * Sets currentSpeed to the engineStartValue,
      * allowing for acceleration and deceleration.
      * (see functions incrementSpeed and decrementSpeed)
      */
@@ -98,7 +101,7 @@ public abstract class Car implements Movable{
     }
 
     /***
-     * sets currentSpeed value to zero.
+     * Sets currentSpeed value to zero.
      */
     public void stopEngine(){
         currentSpeed = 0;
