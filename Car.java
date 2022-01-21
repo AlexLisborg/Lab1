@@ -1,18 +1,60 @@
 import java.awt.*;
 import java.math.*;
+
+/***
+ * abstract superclass defining the attributes of a basic car.
+ */
 public abstract class Car implements Movable{
 
-
+    /***
+     * x coordinate of the car.
+     */
     private double x;
+
+    /***
+     * y coordinate of the car.
+     */
     private double y;
+
+    /***
+     * the direction of the car
+     */
     private double angle;
+
+    /***
+     * the turn speed of the car.
+     */
     private double turnSpeed = Math.PI / 8;
 
-    private int nrDoors; // Number of doors on the car
-    private double enginePower; // Engine power of the car
-    private double currentSpeed; // The current speed of the car
-    private Color color; // Color of the car
-    private String modelName; // The car model name
+    /***
+     * Number of doors on the car
+     */
+    private int nrDoors;
+
+    /***
+     * Engine power of the car
+     */
+    private double enginePower;
+
+    /***
+     * The current speed of the car
+     */
+    private double currentSpeed;
+
+    /***
+     * Color of the car
+     */
+    private Color color;
+
+    /***
+     * The car model name
+     */
+    private String modelName;
+
+    /***
+     * the start value of the cars engine.
+     */
+    private double engineStartValue = 0.1;
 
     public Car(int nrDoors, double enginePower, Color color, String modelName) {
         this.nrDoors = nrDoors;
