@@ -59,12 +59,20 @@ public abstract class Car implements Movable{
      */
     private double engineStartValue = 0.1;
 
+    /**
+     * Super constructor for Car object.
+     * @param nrDoors the number of doors the car will have.
+     * @param enginePower the power of the engine.
+     * @param color the color of the car.
+     * @param modelName the name of the car model.
+     */
     public Car(int nrDoors, double enginePower, Color color, String modelName) {
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.currentSpeed = currentSpeed;
         this.color = color;
         this.modelName = modelName;
+        this.angle = 0;
         stopEngine();
     }
 
@@ -136,6 +144,12 @@ public abstract class Car implements Movable{
     }
 
     /***
+     *
+     * Returns the engine start value.
+     */
+    public double getEngineStartValue() {return engineStartValue;}
+
+    /***
      * Sets the color of the car.
      * @param clr the color which will be set.
      */
@@ -188,4 +202,23 @@ public abstract class Car implements Movable{
         this.y = this.y + getCurrentSpeed() * Math.sin(angle);
     }
 
+    /***
+     * Increases currentSpeed.
+     * @param n the input which decides the amount of incrementSpeed. Input needs to be in interval[0, 1].
+     */
+    public void gas(double n) {
+        if (n > 1 || n < 0) throw new RuntimeException("input needs to be in interval [0, 1]");
+        else incrementSpeed(n);
+    }
+
+    /***
+     *
+     * @param n the input which decides the amount of decrementSpeed. Input needs to be in interval[0, 1].
+     */
+    public void brake(double n){
+        if(n > 1 || n < 0)
+        {throw new RuntimeException("input needs to be in interval [0, 1]");}
+
+        else decrementSpeed(n);
+    }
 }

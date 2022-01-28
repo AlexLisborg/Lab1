@@ -22,12 +22,9 @@ public class Saab95 extends Car {
      * turboOn is set to false by default.
      */
     public Saab95(){
-        nrDoors = 2;
-        color = Color.red;
-        enginePower = 125;
+        super(2,125,Color.red,"Saab95");
 	    turboOn = false;
-        modelName = "Saab95";
-        stopEngine();
+        //stopEngine();
     }
 
     /***
@@ -38,7 +35,10 @@ public class Saab95 extends Car {
 	    turboOn = true;
         turbo = 1.3;
     }
-
+    /***
+     * Sets turboOn to false
+     * (see function speedFactor for turbo usage)
+     */
     public void setTurboOff(){
 	    turboOn = false;
         turbo = 1.0;
