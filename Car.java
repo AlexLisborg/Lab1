@@ -73,7 +73,7 @@ public abstract class Car implements Movable{
      * (see functions incrementSpeed and decrementSpeed)
      *
      */
-    public abstract double speedFactor();
+    protected abstract double speedFactor();
 
     /***
      * Increases currentSpeed with speedFactor times the defined amount.

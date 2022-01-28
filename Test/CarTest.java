@@ -1,4 +1,7 @@
+
 import junit.framework.TestCase;
+import org.junit.Before;
+
 import java.math.*;
 import java.awt.*;
 
@@ -52,7 +55,7 @@ public class CarTest extends TestCase {
         assertTrue(!(before == after));
     }
 
-
+   @Before
     public void testGasCantResultInCurrentSpeedGettingLower() {
         Saab95 car = new Saab95();
         double before = car.getCurrentSpeed();
