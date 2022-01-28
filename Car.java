@@ -173,24 +173,16 @@ public abstract class Car implements Movable{
      */
     public double getY() {return y;}
 
-    /***
-     * increases the angle of the car by the turnSpeed.
-     */
+
     public void turnLeft(){
         this.angle = this.angle - this.turnSpeed;
     }
 
-    /***
-     * decreases the angle of the car by the turnSpeed.
-     */
     public void turnRight(){
         this.angle = this.angle + this.turnSpeed;
     }
 
-    /***
-     * increases the x coordinate with the currentSpeed() times the cosine of the cars angle.
-     * increases the y coordinate with the currentSpeed() times the sine of the cars angle.
-     */
+
     public void move() {
         this.x = this.x + getCurrentSpeed() * Math.cos(angle);
         this.y = this.y + getCurrentSpeed() * Math.sin(angle);

@@ -1,7 +1,9 @@
 import java.awt.*;
 
 /***
- * subclass to car, has a unique value turbo that is used in speedFactor function.
+ * Subclass to car, has a unique value turbo that is used in speedFactor function.
+ * @author Eli Uhlin, Alexander Lisborg
+ * @version 1.6 21 january 2022
  */
 public class Saab95 extends Car {
 
@@ -47,11 +49,12 @@ public class Saab95 extends Car {
     */
     public double getTurbo() {
     return this.turbo;
-
     }
-
-
-    
+    /***
+     * Calculates the speedFactor for the car.
+     * @return speedFactor a unique value used to determine the
+     * acceleration of the car in increment and decrement speed
+     */
     public double speedFactor(){
         return getEnginePower() * 0.01 * turbo;
     }

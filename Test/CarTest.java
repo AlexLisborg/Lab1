@@ -11,13 +11,13 @@ public class CarTest extends TestCase {
     public void testIncrementSpeedCanNotSetCurrentSpeedToAnythingGreaterThanEnginePower() {
         Saab95 car = new Saab95();
         car.incrementSpeed(1000);
-        assertEquals(car.getCurrentSpeed(), 0);
+        assertTrue(car.getCurrentSpeed() <= car.getEnginePower());
     }
 
     public void testDecrementSpeedCanNotSetCurrentSpeedToAnythingLowerThanZero() {
         Saab95 car = new Saab95();
         car.decrementSpeed(1000);
-        assertEquals(car.getCurrentSpeed(), 0);
+        assertEquals(car.getCurrentSpeed(), 0.0);
     }
 
     public void testStartEngineSetsCurrentSpeedToEngineStartValue() {
@@ -39,6 +39,18 @@ public class CarTest extends TestCase {
         assertEquals(car.getColor(), Color.black);
     }
 
+    public void testGetEnginePowerForSaabIsOneHundredAndTwentyFive(){
+        Saab95 car = new Saab95();
+        assertEquals(car.getEnginePower(),125.0);
+    }
+
+    public void testGetCurrentSpeedWorks(){
+        Saab95 car = new Saab95();
+        car.setCurrentSpeed(5);
+        assertEquals(car.getCurrentSpeed(), 5d);
+    }
+
+
     public void testGasInputMustBeBetweenZeroAndOne() {
         Saab95 car = new Saab95();
         double before = car.getCurrentSpeed();
@@ -50,6 +62,7 @@ public class CarTest extends TestCase {
     public void testBrakeInputMustBeBetweenZeroAndOne() {
         Saab95 car = new Saab95();
         double before = car.getCurrentSpeed();
+        car.setCurrentSpeed(10);
         car.brake(0.5);
         double after = car.getCurrentSpeed();
         assertTrue(!(before == after));

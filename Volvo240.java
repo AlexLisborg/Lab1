@@ -1,10 +1,15 @@
 import java.awt.*;
 
 /***
- * subclass to car, has a unique value trimfactor thats used in speedFactor function.
+ * Subclass to car, has a unique value trimfactor that is used in speedFactor function.
+ * @author Eli Uhlin, Alexander Lisborg
+ * @version 1.6 21 january 2022
  */
 public class Volvo240 extends Car{
 
+    /***
+     * Used to calculate the speedFactor for the Volvo240 car.
+     */
     public final static double trimFactor = 1.25;
     public int nrDoors; // Number of doors on the car
     public double enginePower; // Engine power of the car
@@ -19,7 +24,12 @@ public class Volvo240 extends Car{
         modelName = "Volvo240";
         stopEngine();
     }
-    
+
+    /***
+     * Calculates the speedFactor for the Volvo240 car.
+     * @return speedFactor a unique value used to determine the
+     * acceleration of the car in increment and decrement speed
+     */
     public double speedFactor(){
         return enginePower * 0.01 * trimFactor;
     }
