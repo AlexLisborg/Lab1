@@ -1,17 +1,31 @@
 
 import junit.framework.TestCase;
+import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 
 import java.math.*;
 import java.awt.*;
 
 public class CarTest extends TestCase {
 
+    Saab95 saab = new Saab95();
+    Scania scania = new Scania();
+    CarTransport carTransport = new Truck();
+    carTransport.loadCar(scania)
+// Kolla varför loadTruck inte funkar :), lycka till ! ! ! !
+    @Before public void initialize() {
+        saab = new Saab95();
+        scania = new Scania();
+        carTransport = new Truck();
+    }
 
+    @Test
     public void testIncrementSpeedCanNotSetCurrentSpeedToAnythingGreaterThanEnginePower() {
         Saab95 car = new Saab95();
         car.incrementSpeed(1000);
         assertTrue(car.getCurrentSpeed() <= car.getEnginePower());
+
     }
 
     public void testDecrementSpeedCanNotSetCurrentSpeedToAnythingLowerThanZero() {

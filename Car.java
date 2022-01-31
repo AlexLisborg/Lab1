@@ -66,7 +66,7 @@ public abstract class Car implements Movable{
      * @param color the color of the car.
      * @param modelName the name of the car model.
      */
-    public Car(int nrDoors, double enginePower, Color color, String modelName) {
+    public Car(int nrDoors, double enginePower, Color color, String modelName,double size) {
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.currentSpeed = currentSpeed;
@@ -88,7 +88,9 @@ public abstract class Car implements Movable{
      * @param amount the amount with which we multiply the speedFactor.
      */
     public void incrementSpeed(double amount){
-        setCurrentSpeed(Math.min(getCurrentSpeed() + speedFactor() * amount,getEnginePower()));
+        if (currentSpeed != 0) {
+            setCurrentSpeed(Math.min(getCurrentSpeed() + speedFactor() * amount,getEnginePower()));
+        }
     }
 
     /***
@@ -105,7 +107,9 @@ public abstract class Car implements Movable{
      * (see functions incrementSpeed and decrementSpeed)
      */
     public void startEngine(){
-        currentSpeed = engineStartValue;
+        if(currentSpeed == 0) {
+            currentSpeed = engineStartValue;
+        }
     }
 
     /***
