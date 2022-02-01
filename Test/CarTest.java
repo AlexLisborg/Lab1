@@ -12,12 +12,13 @@ public class CarTest extends TestCase {
     Saab95 saab = new Saab95();
     Scania scania = new Scania();
     CarTransport carTransport = new Truck();
-    carTransport.loadCar(scania)
+
 // Kolla varför loadTruck inte funkar :), lycka till ! ! ! !
     @Before public void initialize() {
         saab = new Saab95();
         scania = new Scania();
         carTransport = new Truck();
+        carTransport.loadCar(scania);
     }
 
     @Test
@@ -65,14 +66,15 @@ public class CarTest extends TestCase {
     }
 
 
+    @Test
     public void testGasInputMustBeBetweenZeroAndOne() {
         Saab95 car = new Saab95();
         double before = car.getCurrentSpeed();
+        car.startEngine();
         car.gas(0.5);
         double after = car.getCurrentSpeed();
-        assertTrue(!(before == after));
+        assertTrue(before != after);
     }
-
     public void testBrakeInputMustBeBetweenZeroAndOne() {
         Saab95 car = new Saab95();
         double before = car.getCurrentSpeed();
@@ -186,6 +188,34 @@ public class CarTest extends TestCase {
     public void testSaab95SpeedFactor() {
         Saab95 car = new Saab95();
         assertEquals(car.speedFactor(),125*0.01);
+    }
+
+
+    @Test
+    public void testSaabAndCarTransportShouldHaveTheSameCoordinates() {
+        carTransport.lowerRamp();
+        carTransport.loadCar(saab);
+        carTransport.setCurrentSpeed(20);
+        carTransport.move();
+        double carX = carTransport.getX();
+        double saabX = carTransport.ramp.peek().getX();
+        double carY = carTransport.getY();
+        double saabY = carTransport.ramp.peek().getY();
+        assertTrue(saabX == carX && carY == saabY);
+
+    }
+
+
+
+    public void testCarTransportPeekShouldBeSaab() {
+        carTransport.lowerRamp();
+        carTransport.loadCar(saab);
+        carTransport.setCurrentSpeed(20);
+        carTransport.move();
+        double carTranCord = carTransport.getX();
+        double saabCord = carTransport.ramp.peek().getX();
+        assertEquals(carTransport.ramp.peek(), saab);
+
     }
 }
 

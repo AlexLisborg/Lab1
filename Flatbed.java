@@ -1,10 +1,9 @@
-import java.math.*;
-
 public class Flatbed {
 
     private double angle;
     private double anglelimit;
     private double incDecSpeed;
+    private Car car;
 
 
     /***
@@ -12,10 +11,11 @@ public class Flatbed {
      * @param anglelimit uses degrees as input
      * @param incDecSpeed uses degrees as input
      */
-    public Flatbed(double anglelimit, double incDecSpeed) {
+    public Flatbed(double anglelimit, double incDecSpeed, Car car) {
         angle = 0;
         this.anglelimit = Math.toRadians(anglelimit);
         this.incDecSpeed = Math.toRadians(incDecSpeed);
+        //this.car = car;
 
     }
 

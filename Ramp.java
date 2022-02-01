@@ -12,12 +12,14 @@ public class Ramp {
     rampState currentRampState;
 
     private Deque<Car> stack;
-    private double sizeLimit;
+    private final double sizeLimit;
     private double currentSizeLoad;
 
-    public Ramp() {
+
+    public Ramp(double sizeLimit, Car car) {
         currentRampState = rampState.UP;
         stack = new ArrayDeque<>();
+        this.sizeLimit = sizeLimit;
     }
 
 

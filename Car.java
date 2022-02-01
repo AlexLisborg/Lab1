@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.math.*;
 
 /***
  * Abstract superclass defining the attributes of a basic car.
@@ -32,12 +31,12 @@ public abstract class Car implements Movable{
     /***
      * Number of doors on the car
      */
-    private int nrDoors;
+    private final int nrDoors;
 
     /***
      * Engine power of the car
      */
-    private double enginePower;
+    private final double enginePower;
 
     /***
      * The current speed of the car
@@ -59,6 +58,8 @@ public abstract class Car implements Movable{
      */
     private double engineStartValue = 0.1;
 
+    private double size;
+
     /**
      * Super constructor for Car object.
      * @param nrDoors the number of doors the car will have.
@@ -73,6 +74,9 @@ public abstract class Car implements Movable{
         this.color = color;
         this.modelName = modelName;
         this.angle = 0;
+        this.size = size;
+        this.x = 0;
+        this.y = 0;
         stopEngine();
     }
 
@@ -191,6 +195,21 @@ public abstract class Car implements Movable{
      */
     public double getY() {return y;}
 
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
+    public double getSize() {
+        return size;
+    }
+
+    public void setSize(double size) {
+        this.size = size;
+    }
 
     public void turnLeft(){
         this.angle = this.angle - this.turnSpeed;

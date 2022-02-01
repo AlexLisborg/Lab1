@@ -14,7 +14,7 @@ public abstract class FlatbedCar extends Car {
      */
     public FlatbedCar(int nrDoors, double enginePower, Color color, String modelName, double size, double anglelimit, double incDecSpeed) {
         super(nrDoors, enginePower, color, modelName, size);
-        flatbed = new Flatbed(anglelimit, incDecSpeed);
+        flatbed = new Flatbed(anglelimit, incDecSpeed, this);
     }
     public void startEngine() {
         if (flatbed.getAngle() == 0 && getCurrentSpeed() == 0) {

@@ -3,9 +3,10 @@ import java.awt.*;
 public abstract class CarTransport extends Car {
 
     double acceptableCarRange = 2;
-    Ramp ramp = new Ramp();
-    public CarTransport(int nrDoors, double enginePower, Color color, String modelName, double size) {
+    Ramp ramp;
+    public CarTransport(int nrDoors, double enginePower, Color color, String modelName, double size, double rampSizeLimit) {
         super(nrDoors, enginePower, color, modelName, size);
+        ramp = new Ramp(rampSizeLimit, this);
 
     }
 
@@ -28,8 +29,7 @@ public abstract class CarTransport extends Car {
 
     public void loadCar(Car car) {
         if(inRange(car) && !(car instanceof CarTransport)) {
-            ramp.loadCar(car);
-        }
+            ramp.loadCar(car);}
     }
     public void move() {
         double newX = getX() + getCurrentSpeed() * Math.cos(getAngle());
