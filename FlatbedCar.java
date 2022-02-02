@@ -23,11 +23,13 @@ public abstract class FlatbedCar extends Car {
     }
 
     public void incrementFlatbed () {
-        flatbed.incrementAngle(getCurrentSpeed() > 0);
+        flatbed.incrementAngle();
     }
 
     public void decrementFlatbed () {
         flatbed.decrementAngle();
     }
+
+    public double getFlatbedAngle () {return flatbed.getAngle();}
 
 }

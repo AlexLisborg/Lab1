@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+
 import java.math.*;
 import java.awt.*;
 
@@ -14,7 +15,9 @@ public class CarTest extends TestCase {
     CarTransport carTransport = new Truck();
 
 // Kolla varför loadTruck inte funkar :), lycka till ! ! ! !
-    @Before public void initialize() {
+    @Before
+    public void initialize() {
+        System.out.println();
         saab = new Saab95();
         scania = new Scania();
         carTransport = new Truck();

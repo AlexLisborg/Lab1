@@ -54,6 +54,9 @@ public class Ramp {
         }
     }
 
+    /***
+     * removes (pops) the last loaded car (the car at the top of the stack)
+     */
     public void unLoadCar() {
         if (currentRampState == rampState.DOWN) {
             currentSizeLoad -= stack.pop().getSize();

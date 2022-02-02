@@ -19,12 +19,15 @@ public class Flatbed {
 
     }
 
-    public void incrementAngle(boolean isMoving) {
-        if(this.angle <= anglelimit - incDecSpeed && !isMoving) {
+    public void incrementAngle() {
+        if(this.angle <= anglelimit - incDecSpeed && car.getCurrentSpeed() == 0) {
             this.angle+= incDecSpeed;
         }
     }
 
+    /***
+     *
+     */
     public void decrementAngle() {
         if(this.angle >= 0 + incDecSpeed) {
             this.angle-= incDecSpeed;

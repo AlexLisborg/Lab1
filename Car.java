@@ -6,7 +6,7 @@ import java.awt.*;
  * @version 1.6 21 january 2022
  *
  */
-public abstract class Car implements Movable{
+public abstract class Car implements Movable, Positionable{
 
     /***
      * X coordinate of the car.

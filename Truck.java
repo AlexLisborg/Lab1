@@ -7,4 +7,6 @@ public class Truck extends CarTransport{
 
     }
 
+
+
 }
