@@ -12,6 +12,7 @@ public abstract class CarTransport extends Car {
 
     }
 
+    //Following methods are solely used to extend the range of the ramp methods.
     public void lowerRamp() {ramp.lowerRamp();}
     public void raiseRamp() {ramp.raiseRamp();}
     public String getCurrentRampState() {return ramp.getCurrentRampState();}

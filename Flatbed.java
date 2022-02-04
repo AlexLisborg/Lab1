@@ -8,7 +8,7 @@ public class Flatbed {
     /***
      *
      * @param angleLimit uses degrees as input
-     * @param incDecSpeed uses degrees as input
+     * @param incDecSpeed uses degrees as input, used to increment/decrement the angle.
      */
     public Flatbed(double angleLimit, double incDecSpeed, Car car) {
         angle = 0;
@@ -18,6 +18,10 @@ public class Flatbed {
 
     }
 
+    /***
+     * Increases the angle of Flatbed with the defined incDecSpeed,
+     * incrementAngle will do nothing if angleLimit is reached or if the linked car is moving.
+     */
     public void incrementAngle() {
         if(this.angle <= anglelimit - incDecSpeed && car.getCurrentSpeed() == 0) {
             this.angle+= incDecSpeed;

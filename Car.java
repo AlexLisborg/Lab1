@@ -6,7 +6,7 @@ import java.awt.*;
  * @version 1.6 21 january 2022
  *
  */
-public abstract class Car extends MotorizedVehicle implements Movable, Positionable{
+public abstract class Car implements Movable, Positionable{
 
     /***
      * X coordinate of the car.
@@ -124,28 +124,28 @@ public abstract class Car extends MotorizedVehicle implements Movable, Positiona
     }
 
     /***
-     * Returns the number of doors on the car.
+     * Returns the number of doors.
      */
     public int getNrDoors(){
         return nrDoors;
     }
 
     /***
-     * Returns the enginePower of the car.
+     * Returns the enginePower.
      */
     public double getEnginePower(){
         return enginePower;
     }
 
     /***
-     * Returns the currentSpeed of the car.
+     * Returns the currentSpeed.
      */
     public double getCurrentSpeed(){
         return currentSpeed;
     }
 
     /***
-     * Returns the color of the car.
+     * Returns the color.
      */
     public Color getColor(){
         return color;
@@ -158,7 +158,7 @@ public abstract class Car extends MotorizedVehicle implements Movable, Positiona
     public double getEngineStartValue() {return engineStartValue;}
 
     /***
-     * Sets the color of the car.
+     * Sets the color.
      * @param clr the color which will be set.
      */
     public void setColor(Color clr){
@@ -166,32 +166,32 @@ public abstract class Car extends MotorizedVehicle implements Movable, Positiona
     }
 
     /***
-     * Sets the currentSpeed of the car.
+     * Sets the currentSpeed.
      * @param currentSpeed the speed with which the currentSpeed will be set.
      */
     public void setCurrentSpeed(double currentSpeed) {this.currentSpeed = currentSpeed;}
 
     /***
-     * Sets the angle of the car.
+     * Sets the angle.
      * @param angle the angle which will be set.
      */
     public void setAngle(double angle) {this.angle = angle;}
 
     /***
      *
-     * Returns the angle of the car.
+     * Returns the angle.
      */
     public double getAngle(){ return angle;}
 
     /***
      *
-     * Gets the x value of the car.
+     * Gets the x value.
      */
     public double getX() {return x;}
 
     /***
      *
-     * Gets the y value of the car.
+     * Gets the y value.
      */
     public double getY() {return y;}
 

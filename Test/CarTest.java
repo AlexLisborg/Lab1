@@ -353,11 +353,23 @@ public class CarTest extends TestCase {
     }
 
     public void testGarageShouldBeMaxSize() {
-        Garage<CarTransport> carGarage = new Garage<>(30, 2, 0, 0);
+        Garage<CarTransport> carGarage = new Garage<>(40, 2, 0, 0);
         carGarage.loadItem(carTransport);
         carGarage.loadItem(carTransport2);
         assertEquals(carGarage.getCurrentSizeLoad(), carGarage.getSizeLimit());
     }
+
+
+
+    public void testUnloadShouldMoveCar() {
+        carTransport.lowerRamp();
+        carTransport.loadItem(saab);
+        carTransport.setAngle(0);
+        Car saabTest = carTransport.unLoadItem();
+        assertEquals(saabTest.getX(), (double)-1);
+
+    }
+
 }
 
 

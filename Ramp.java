@@ -22,7 +22,9 @@ public class Ramp extends Platform<Car> {
         this.sizeLimit = sizeLimit;
     }
 
-
+    /***
+     *Tells us if Ramp is currently up or down.
+     */
     public String getCurrentRampState() {
         return "Ramp is " + currentRampState;
     }
@@ -53,9 +55,9 @@ public class Ramp extends Platform<Car> {
         if (currentRampState == RampState.DOWN) {
            return super.unLoadItem();
         }
-    }
+        else {
+            throw new RuntimeException("Ramp is UP!");
+        }}
 
-    public Car peek() {
-        return stack.peek();
-    }
+
 }

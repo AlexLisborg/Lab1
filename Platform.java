@@ -10,32 +10,32 @@ public class Platform <T extends Positionable> implements Positionable {
     protected double currentSizeLoad;
     private final double acceptableItemRange = 2;
 
+    /***
+     * Constructor for Platform
+     * @param sizeLimit when size Limit is reached items can no longer be loaded.
+     */
     public Platform(double sizeLimit) {
         this.stack = new ArrayDeque<>();
         this.sizeLimit = sizeLimit;
         this.size = sizeLimit * 2;
     }
 
-
     protected Deque<T> getStack() {
         return stack;
     }
 
-
+    /***
+     * Returns the last loaded item.
+     * @return
+     */
     protected T peek() {
         return stack.peek();
     }
 
-
-    protected double getSizeLimit() {
-        return sizeLimit;
-    }
-
-
-    protected double getCurrentSizeLoad() {
-        return currentSizeLoad;
-    }
-
+    /***
+     * Checks if an item is in acceptableItemRange, if not – loadItem will not work.
+     * @param item specified to be checked.
+     */
     protected boolean inRange(T item) {
         double deltaY = this.getY() - item.getY();
         double deltaX = this.getX() - item.getX();
@@ -51,7 +51,14 @@ public class Platform <T extends Positionable> implements Positionable {
             currentSizeLoad += item.getSize();
         }
     }
-    protected T unLoadItem() {
+
+    /***
+     * returns last loaded item, and removes it from the stack.
+     * @return
+     */
+    protected T unLoadItem(double x, double y) {
+        stack.peek().setX(stack.peek().getX() + x);
+        stack.peek().setY(stack.peek().getY() + y);
         return stack.pop();
     }
 

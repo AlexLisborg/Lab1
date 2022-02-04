@@ -6,6 +6,13 @@ public class Garage <T extends Car> implements Positionable {
     private double x;
     private double y;
 
+    /***
+     * Garage constructor, can hold any Car type
+     * @param sizeLimit if sum of all Loaded Cars exceeds sizeLimit
+     * @param maxCapacity max amount of cars that can be held in the Garage.
+     * @param x coordinate
+     * @param y coordinate
+     */
     public Garage(double sizeLimit, int maxCapacity,double x,double y) {
         platform = new Platform<T>(sizeLimit);
         this.maxCapacity = maxCapacity;
@@ -13,6 +20,10 @@ public class Garage <T extends Car> implements Positionable {
         this.y = y;
     }
 
+    /***
+     *Loads specified item into the Garage assuming sizeLimit or maxCapacity has not been reached.
+     * @param car specified car to be loaded.
+     */
     public void loadItem(T car) {
         if (currentCapacity < maxCapacity) {
 
@@ -29,12 +40,18 @@ public class Garage <T extends Car> implements Positionable {
         return currentCapacity;
     }
 
+    /***
+     * unLoads last loaded Car.
+     */
     public T unloadItem() {
         return platform.unLoadItem();
     }
 
     public double getSizeLimit() {return platform.getSizeLimit();}
 
+    /***
+     * returns the sum of size for all currently loaded cars.
+     */
     public double getCurrentSizeLoad() {return platform.getCurrentSizeLoad();}
 
 
