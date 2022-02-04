@@ -13,15 +13,17 @@ public class CarTest extends TestCase {
     Saab95 saab = new Saab95();
     Scania scania = new Scania();
     CarTransport carTransport = new Truck();
+    CarTransport carTransport2 = new Truck();
+    Flatbed flatbed = new Flatbed( 40, 2, scania);
+    Garage<Car> carGarage = new Garage<>(300, 2,0,0);
 
-// Kolla varför loadTruck inte funkar :), lycka till ! ! ! !
     @Before
     public void initialize() {
         System.out.println();
         saab = new Saab95();
-        scania = new Scania();
+        FlatbedCar scania;
         carTransport = new Truck();
-        carTransport.loadCar(scania);
+        carTransport.loadItem(saab);
     }
 
     @Test
@@ -68,6 +70,14 @@ public class CarTest extends TestCase {
         assertEquals(car.getCurrentSpeed(), 5d);
     }
 
+    public void testCarTransportShouldHaveRampUp() {
+        carTransport.lowerRamp();
+        carTransport.raiseRamp();
+        String bef = carTransport.getCurrentRampState();
+        carTransport.setCurrentSpeed(4);
+        carTransport.lowerRamp();
+        assertEquals(carTransport.getCurrentRampState(), bef);
+    }
 
     @Test
     public void testGasInputMustBeBetweenZeroAndOne() {
@@ -197,13 +207,13 @@ public class CarTest extends TestCase {
     @Test
     public void testSaabAndCarTransportShouldHaveTheSameCoordinates() {
         carTransport.lowerRamp();
-        carTransport.loadCar(saab);
+        carTransport.loadItem(saab);
         carTransport.setCurrentSpeed(20);
         carTransport.move();
         double carX = carTransport.getX();
-        double saabX = carTransport.ramp.peek().getX();
+        double saabX = carTransport.peek().getX();
         double carY = carTransport.getY();
-        double saabY = carTransport.ramp.peek().getY();
+        double saabY = carTransport.peek().getY();
         assertTrue(saabX == carX && carY == saabY);
 
     }
@@ -212,14 +222,143 @@ public class CarTest extends TestCase {
 
     public void testCarTransportPeekShouldBeSaab() {
         carTransport.lowerRamp();
-        carTransport.loadCar(saab);
+        carTransport.loadItem(saab);
         carTransport.setCurrentSpeed(20);
         carTransport.move();
         double carTranCord = carTransport.getX();
-        double saabCord = carTransport.ramp.peek().getX();
-        assertEquals(carTransport.ramp.peek(), saab);
+        double saabCord = carTransport.peek().getX();
+        assertEquals(carTransport.peek(), saab);
 
     }
+
+    public void testCarTransportShouldNotLoadBecauseSpeed() {
+        carTransport.setCurrentSpeed(20);
+        carTransport.lowerRamp();
+        carTransport.loadItem(saab);
+
+
+        assertEquals(carTransport.peek(), null);
+
+    }
+
+    public void testCarTransportShouldNotLoadBecauseCarisOutOfRange() {
+        saab.setX(4);
+        saab.setY(8);
+        carTransport.lowerRamp();
+        carTransport.loadItem(saab);
+        assertEquals(carTransport.peek(), null);
+
+    }
+
+
+    public void testCarTransportShouldNotLoadOntoCarTransport() {
+        carTransport.lowerRamp();
+        carTransport.loadItem(carTransport);
+        assertEquals(carTransport.peek(), null);
+
+    }
+
+    public void testCarTransportPeekShouldBePop (){
+        carTransport.lowerRamp();
+        carTransport.loadItem(saab);
+        assertEquals(carTransport.peek(), carTransport.unLoadItem());
+    }
+
+
+    public void testFlatBedShouldBeDownWhenStartingEngine() {
+        scania.setFlatbedAngle(30);
+        scania.decrementFlatbed();
+        scania.startEngine();
+        assertEquals(scania.getCurrentSpeed(),(double)0);
+    }
+    public void testFlatBedAngleShouldBeBiggerThanZero() {
+        initialize();
+        scania.incrementFlatbed();
+
+        assertEquals(scania.getFlatbedAngle(), Math.toRadians(1));
+    }
+
+    public void testFlatBedAngleShouldBeZero() {
+        scania.setAngle(30);
+        double before = scania.getAngle();
+        scania.decrementFlatbed();
+        assertEquals(scania.getAngle(),before);
+
+
+    }
+
+    public void testFlatBedAngleShouldBeBiggerThan0() {
+        flatbed.incrementAngle();
+        assertEquals(flatbed.getAngle(), Math.toRadians(2));
+
+    }
+
+    public void testFlatBedAngleShouldBe1Degree() {
+        scania.incrementFlatbed();
+        assertEquals(scania.getFlatbedAngle(), Math.toRadians(1));
+
+
+
+    }
+
+    public void testFlatBedAngleShouldNotPassZero() {
+        scania.incrementFlatbed();
+        scania.decrementFlatbed();
+        scania.decrementFlatbed();
+
+        assertEquals(scania.getFlatbedAngle(),0.0);
+
+
+
+    }
+
+    public void testFlatBedAngleLimitShouldNotPassAngleLimit() {
+    scania.setFlatbedAngle(70);
+    scania.incrementFlatbed();
+
+
+    }
+
+    public void testFlatBedAngleLimitShouldBe70Degrees() {
+        assertEquals(scania.getAngleLimit(), Math.toRadians(70));
+    }
+
+    public void testCapacityShouldBe1() {
+        carGarage.loadItem(scania);
+        assertEquals(carGarage.getCurrentCapacity(),1);
+    }
+
+    public void testCapacityShouldBe2() {
+        carGarage.loadItem(scania);
+        carGarage.loadItem(saab);
+        carGarage.loadItem(carTransport);
+        assertEquals(carGarage.getCurrentCapacity(),2);}
+
+
+
+    public void testGaragePeekShouldBe2() {
+        Garage<Car> carGarage = new Garage<>(11, 2, 0, 0);
+    carGarage.loadItem(saab);
+        carGarage.loadItem(carTransport);
+    assertEquals(carGarage.unloadItem().getSize(), 2.0);
+    }
+
+
+
+   public void testGarageShouldBeMaxCap() {
+       Garage<CarTransport> carGarage = new Garage<>(30, 2, 0, 0);
+   carGarage.loadItem(carTransport);
+       carGarage.loadItem(carTransport2);
+       assertEquals(carGarage.getCurrentCapacity(), carGarage.getMaxCapacity());
+    }
+
+    public void testGarageShouldBeMaxSize() {
+        Garage<CarTransport> carGarage = new Garage<>(30, 2, 0, 0);
+        carGarage.loadItem(carTransport);
+        carGarage.loadItem(carTransport2);
+        assertEquals(carGarage.getCurrentSizeLoad(), carGarage.getSizeLimit());
+    }
 }
+
 
 

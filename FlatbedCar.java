@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public abstract class FlatbedCar extends Car {
+public class FlatbedCar extends Car {
     private Flatbed flatbed;
 
     /***
@@ -17,9 +17,7 @@ public abstract class FlatbedCar extends Car {
         flatbed = new Flatbed(anglelimit, incDecSpeed, this);
     }
     public void startEngine() {
-        if (flatbed.getAngle() == 0 && getCurrentSpeed() == 0) {
-            setCurrentSpeed(getEngineStartValue());
-        }
+        if (getFlatbedAngle()== 0) {super.startEngine();}
     }
 
     public void incrementFlatbed () {
@@ -30,6 +28,17 @@ public abstract class FlatbedCar extends Car {
         flatbed.decrementAngle();
     }
 
+
     public double getFlatbedAngle () {return flatbed.getAngle();}
 
+    public void setFlatbedAngle(double angle) {flatbed.setAngle(angle);}
+    public double getAngleLimit() {
+        return flatbed.getAngleLimit();
+    }
+
+
+
+    public double speedFactor(){
+        return getEnginePower() * 0.01;
+    }
 }

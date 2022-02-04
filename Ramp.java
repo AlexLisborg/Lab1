@@ -1,10 +1,10 @@
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-public class Ramp {
+public class Ramp extends Platform<Car> {
 
 
-    private enum rampState {
+    private enum RampState {
         UP, DOWN
     }
 
@@ -23,45 +23,35 @@ public class Ramp {
     }
 
 
-
-    public Deque<Car> getStack() {
-        return stack;
-    }
-
-
-
-    public void setCurrentRampState(rampState newRampState) {
-        currentRampState = newRampState;
-    }
-
-    public rampState getCurrentRampState() {
-        return currentRampState;
+    public String getCurrentRampState() {
+        return "Ramp is " + currentRampState;
     }
 
 
     public void raiseRamp() {
-        currentRampState = rampState.UP;
+        currentRampState = RampState.UP;
     }
 
     public void lowerRamp() {
         currentRampState = rampState.DOWN;
     }
 
-    public void loadCar(Car car) {
-        if (currentRampState == rampState.DOWN && !(currentSizeLoad + car.getSize() > sizeLimit)){
-            stack.push(car);
-            currentSizeLoad += car.getSize();
+    /***
+     * Pushes the specified car object to stack, only if t
+     * @param car specified to be loaded
+     */
+    public void loadItem(Car car) {
+        if (currentRampState == RampState.DOWN){
+            super.loadItem(car);
         }
     }
 
     /***
      * removes (pops) the last loaded car (the car at the top of the stack)
      */
-    public void unLoadCar() {
-        if (currentRampState == rampState.DOWN) {
-            currentSizeLoad -= stack.pop().getSize();
-
-
+    public Car unLoadItem() {
+        if (currentRampState == RampState.DOWN) {
+           return super.unLoadItem();
         }
     }
 

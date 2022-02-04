@@ -13,6 +13,8 @@ public abstract class CarTransport extends Car {
     }
 
     public void lowerRamp() {ramp.lowerRamp();}
+    public void raiseRamp() {ramp.raiseRamp();}
+    public String getCurrentRampState() {return ramp.getCurrentRampState();}
 
     /***
      * checks if car is in range to be loaded onto the Ramp
@@ -44,14 +46,21 @@ public abstract class CarTransport extends Car {
         double newY = getY() + getCurrentSpeed() * Math.sin(getAngle());
         setX(newX);
         setY(newY);
+        ramp.setX(newX);
+        ramp.setY(newY);
         for (Car car : ramp.getStack()) {
             car.setX(newX);
             car.setY(newY);
         }
     }
 
+
+
+
     public double speedFactor(){
         return getEnginePower() * 0.01;
     }
+
+
 
 }

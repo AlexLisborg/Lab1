@@ -1,19 +1,18 @@
 public class Flatbed {
 
     private double angle;
-    private double anglelimit;
+    private final double angleLimit;
     private double incDecSpeed;
     private Car car;
 
-
     /***
      *
-     * @param anglelimit uses degrees as input
+     * @param angleLimit uses degrees as input
      * @param incDecSpeed uses degrees as input
      */
-    public Flatbed(double anglelimit, double incDecSpeed, Car car) {
+    public Flatbed(double angleLimit, double incDecSpeed, Car car) {
         angle = 0;
-        this.anglelimit = Math.toRadians(anglelimit);
+        this.angleLimit = Math.toRadians(angleLimit);
         this.incDecSpeed = Math.toRadians(incDecSpeed);
         //this.car = car;
 
@@ -39,5 +38,19 @@ public class Flatbed {
         return angle;
     }
 
+    public double getAngleLimit() {
+        return angleLimit;
+    }
 
+    public double getIncDecSpeed() {
+        return incDecSpeed;
+    }
+
+    public void setAngle(double angle) {
+        this.angle = Math.toRadians(angle);
+    }
+
+    public void setIncDecSpeed(double incDecSpeed) {
+        this.incDecSpeed = incDecSpeed;
+    }
 }

@@ -6,7 +6,7 @@ import java.awt.*;
  * @version 1.6 21 january 2022
  *
  */
-public abstract class Car implements Movable, Positionable{
+public abstract class Car extends MotorizedVehicle implements Movable, Positionable{
 
     /***
      * X coordinate of the car.
@@ -244,4 +244,5 @@ public abstract class Car implements Movable, Positionable{
 
         else decrementSpeed(n);
     }
+
 }

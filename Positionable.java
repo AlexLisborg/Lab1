@@ -4,9 +4,14 @@ public interface Positionable {
 
     double getY();
 
-    void setX(double d);
+    void setX(double x);
 
-    void setY(double d);
+    void setY(double y);
+
+
+    double getSize();
+
+
 
 }
 // För att kunna lasta bilar på både ramp och garage utan kod duplicering, skapa en loader (eller platform)
